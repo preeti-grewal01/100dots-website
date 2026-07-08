@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>100 DOTS — One Vision. 100 Solutions.</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+  :root {
+    --navy: #071A3D;
+    --navy2: #0D2251;
+    --white: #FFFFFF;
+    --orange: #FF6B35;
+    --purple: #6C63FF;
+    --lightblue: #E8F0FE;
+    --grey: #F7F9FC;
+    --text: #1A1A2E;
+    --muted: #6B7280;
+    --teal: #009688;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(7, 26, 61, 0.95);
+    backdrop-filter: blur(12px);
+    padding: 16px 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.6rem; font-weight: 700;
+    color: white;
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+
+  .logo-dot { color: var(--orange); }
+
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.8); text-decoration: none;
+    font-size: 0.9rem; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--orange); }
+
+  .nav-cta {
+    background: var(--orange); color: white;
+    padding: 10px 24px; border-radius: 8px;
+    font-weight: 600; font-size: 0.9rem;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 20px rgba(255,107,53,0.4);
+  }
+  .nav-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(255,107,53,0.6);
+  }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #071A3D 0%, #0D2251 50%, #0A1628 100%);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center;
+    padding: 100px 5% 60px;
+  }
+
+  canvas#dots {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    opacity: 0.5;
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 600px;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(108,99,255,0.2);
+    border: 1px solid rgba(108,99,255,0.4);
+    color: #A8A3FF;
+    padding: 6px 16px; border-radius: 50px;
+    font-size: 0.8rem; font-weight: 600;
+    margin-bottom: 24px;
+    letter-spacing: 0.5px;
+  }
+
+  .hero-badge-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--purple);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.5); }
+  }
+
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700; color: white;
+    line-height: 1.15; margin-bottom: 8px;
+  }
+
+  .hero h1 span { color: var(--orange); }
+
+  .hero-sub {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 16px; font-weight: 400;
+  }
+
+  .hero p {
+    color: rgba(255,255,255,0.55);
+    font-size: 1rem; line-height: 1.7;
+    margin-bottom: 40px;
+    max-width: 480px;
+  }
+
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--orange);
+    color: white; padding: 14px 32px;
+    border-radius: 10px; font-weight: 700;
+    font-size: 1rem; text-decoration: none;
+    box-shadow: 0 0 30px rgba(255,107,53,0.5);
+    transition: all 0.3s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 50px rgba(255,107,53,0.7);
+  }
+
+  .btn-secondary {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white; padding: 14px 32px;
+    border-radius: 10px; font-weight: 600;
+    font-size: 1rem; text-decoration: none;
+    transition: all 0.3s;
+    display: inline-flex; align-items: center; gap: 8px;
+    backdrop-filter: blur(10px);
+  }
+  .btn-secondary:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-3px);
+  }
+
+  .hero-mockup {
+    position: absolute; right: 5%; bottom: 0;
+    width: min(420px, 40vw);
+    z-index: 2;
+    animation: float 4s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+
+  .phone-frame {
+    width: 100%; background: #1A1A2E;
+    border-radius: 40px;
+    padding: 12px;
+    border: 2px solid rgba(108,99,255,0.3);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(108,99,255,0.2);
+  }
+
+  .phone-screen {
+    background: linear-gradient(135deg, #071A3D, #0D2251);
+    border-radius: 30px; overflow: hidden;
+    aspect-ratio: 9/19;
+    display: flex; flex-direction: column;
+  }
+
+  .phone-header {
+    background: linear-gradient(90deg, #6C63FF, #009688);
+    padding: 20px 16px 16px;
+    color: white;
+  }
+
+  .phone-header-title { font-size: 0.7rem; opacity: 0.7; margin-bottom: 2px; }
+  .phone-header-name { font-size: 1rem; font-weight: 700; }
+
+  .phone-stats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 8px; padding: 12px;
+  }
+
+  .phone-stat {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; padding: 10px;
+    text-align: center;
+  }
+
+  .phone-stat-num { font-size: 1.2rem; font-weight: 700; color: var(--orange); }
+  .phone-stat-label { font-size: 0.55rem; color: rgba(255,255,255,0.5); margin-top: 2px; }
+
+  .phone-menu {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 8px; padding: 0 12px 12px;
+  }
+
+  .phone-menu-item {
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px; padding: 10px 6px;
+    text-align: center; font-size: 0.5rem;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .phone-menu-icon { font-size: 1.2rem; margin-bottom: 4px; }
+
+  /* ─── STATS BAR ─── */
+  .stats-bar {
+    background: var(--orange);
+    padding: 24px 5%;
+    display: flex; justify-content: center;
+    gap: clamp(32px, 5vw, 80px);
+    flex-wrap: wrap;
+  }
+
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem; font-weight: 700; color: white;
+  }
+  .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.8); font-weight: 500; }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 80px 5%; }
+
+  .section-badge {
+    display: inline-block;
+    background: var(--lightblue);
+    color: var(--purple);
+    padding: 4px 16px; border-radius: 50px;
+    font-size: 0.8rem; font-weight: 600;
+    margin-bottom: 16px; letter-spacing: 0.5px;
+  }
+
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700; color: var(--navy);
+    margin-bottom: 16px; line-height: 1.2;
+  }
+
+  .section-title span { color: var(--orange); }
+
+  .section-sub {
+    color: var(--muted); font-size: 1.05rem;
+    max-width: 560px; line-height: 1.7; margin-bottom: 48px;
+  }
+
+  /* ─── ABOUT ─── */
+  #about { background: white; }
+
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: center;
+  }
+
+  .about-visual {
+    background: linear-gradient(135deg, var(--navy), var(--navy2));
+    border-radius: 24px; padding: 40px;
+    position: relative; overflow: hidden;
+  }
+
+  .about-visual-dot {
+    position: absolute; border-radius: 50%;
+    background: rgba(108,99,255,0.2);
+  }
+
+  .dots-grid {
+    display: grid; grid-template-columns: repeat(10, 1fr);
+    gap: 8px; margin-bottom: 24px;
+  }
+
+  .dot-cell {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+  }
+
+  .dot-cell.lit { background: var(--orange); box-shadow: 0 0 8px var(--orange); }
+  .dot-cell.lit2 { background: var(--purple); box-shadow: 0 0 8px var(--purple); }
+
+  .about-tagline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.8rem; font-weight: 700; color: white;
+    line-height: 1.3;
+  }
+
+  .about-tagline span { color: var(--orange); }
+
+  .about-desc { color: rgba(255,255,255,0.6); margin-top: 16px; line-height: 1.7; }
+
+  .value-list { list-style: none; margin-top: 32px; }
+  .value-list li {
+    display: flex; align-items: flex-start; gap: 12px;
+    margin-bottom: 16px; color: var(--muted); font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  .value-list li::before {
+    content: "→"; color: var(--orange);
+    font-weight: 700; flex-shrink: 0; margin-top: 1px;
+  }
+
+  /* ─── PRODUCTS ─── */
+  #products { background: var(--grey); }
+
+  .products-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+  }
+
+  .product-card {
+    background: white; border-radius: 20px;
+    padding: 36px; position: relative; overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+
+  .product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.12);
+  }
+
+  .product-card.featured {
+    border: 2px solid var(--purple);
+    background: linear-gradient(135deg, #FAFAFE, white);
+  }
+
+  .product-card.pipeline {
+    opacity: 0.7;
+    background: #FAFAFA;
+  }
+
+  .product-badge {
+    position: absolute; top: 20px; right: 20px;
+    font-size: 0.7rem; font-weight: 700;
+    padding: 4px 12px; border-radius: 50px;
+  }
+
+  .badge-live { background: #DCFCE7; color: #166534; }
+  .badge-soon { background: #FEF3C7; color: #92400E; }
+  .badge-pipeline { background: #F3F4F6; color: #6B7280; }
+
+  .product-icon { font-size: 2.5rem; margin-bottom: 16px; }
+  .product-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.4rem; font-weight: 700;
+    color: var(--navy); margin-bottom: 8px;
+  }
+  .product-tagline { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+
+  .product-features { list-style: none; }
+  .product-features li {
+    font-size: 0.85rem; color: var(--text);
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .product-features li:last-child { border-bottom: none; }
+  .product-features li::before { content: "✓"; color: var(--teal); font-weight: 700; }
+
+  .product-cta {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 20px; color: var(--purple);
+    font-weight: 600; font-size: 0.9rem;
+    text-decoration: none;
+    transition: gap 0.2s;
+  }
+  .product-cta:hover { gap: 10px; }
+
+  /* ─── HELLOSCHOOL FEATURES ─── */
+  #features { background: white; }
+
+  .features-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
+  .feature-card {
+    padding: 28px; border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.07);
+    transition: all 0.3s;
+    position: relative; overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--purple), var(--orange));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .feature-card:hover::before { transform: scaleX(1); }
+  .feature-card:hover {
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    transform: translateY(-4px);
+  }
+
+  .feature-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 16px;
+  }
+
+  .feature-name {
+    font-weight: 700; font-size: 1rem;
+    color: var(--navy); margin-bottom: 8px;
+  }
+
+  .feature-desc { color: var(--muted); font-size: 0.875rem; line-height: 1.6; }
+
+  /* ─── AI SECTION ─── */
+  #ai {
+    background: linear-gradient(135deg, var(--navy) 0%, #1A1040 100%);
+    position: relative; overflow: hidden;
+  }
+
+  #ai .section-title { color: white; }
+  #ai .section-sub { color: rgba(255,255,255,0.6); }
+  #ai .section-badge { background: rgba(108,99,255,0.2); color: #A8A3FF; }
+
+  .ai-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+
+  .ai-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px; padding: 24px;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+  }
+
+  .ai-card:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(108,99,255,0.5);
+    transform: translateY(-4px);
+  }
+
+  .ai-icon { font-size: 2rem; margin-bottom: 12px; }
+  .ai-name { font-weight: 700; color: white; margin-bottom: 8px; font-size: 1rem; }
+  .ai-desc { color: rgba(255,255,255,0.5); font-size: 0.85rem; line-height: 1.6; }
+
+  .ai-badge {
+    display: inline-block; margin-top: 10px;
+    background: rgba(108,99,255,0.3); color: #A8A3FF;
+    padding: 2px 10px; border-radius: 50px;
+    font-size: 0.7rem; font-weight: 600;
+  }
+
+  /* ─── WHY US ─── */
+  #why { background: var(--lightblue); }
+
+  .why-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+  }
+
+  .why-card {
+    background: white; border-radius: 16px; padding: 28px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    transition: transform 0.3s;
+  }
+
+  .why-card:hover { transform: translateY(-6px); }
+  .why-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.5rem; font-weight: 700; color: var(--orange);
+    margin-bottom: 8px;
+  }
+  .why-label { font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .why-desc { color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
+
+  /* ─── CONTACT ─── */
+  #contact {
+    background: var(--navy);
+    position: relative; overflow: hidden;
+  }
+
+  #contact .section-title { color: white; }
+  #contact .section-sub { color: rgba(255,255,255,0.6); }
+  #contact .section-badge { background: rgba(255,107,53,0.2); color: var(--orange); }
+
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: start;
+  }
+
+  .contact-info { }
+  .contact-item {
+    display: flex; align-items: flex-start; gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .contact-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: rgba(255,107,53,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+  }
+
+  .contact-label { color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-bottom: 4px; }
+  .contact-value { color: white; font-weight: 600; font-size: 1rem; }
+
+  .contact-form {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px; padding: 36px;
+    backdrop-filter: blur(10px);
+  }
+
+  .form-group { margin-bottom: 20px; }
+  .form-group label {
+    display: block; color: rgba(255,255,255,0.7);
+    font-size: 0.85rem; font-weight: 500; margin-bottom: 8px;
+  }
+
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px; padding: 12px 16px;
+    color: white; font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--orange);
+  }
+
+  .form-group select option { background: var(--navy); color: white; }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .form-submit {
+    width: 100%; background: var(--orange);
+    color: white; border: none; border-radius: 10px;
+    padding: 14px; font-size: 1rem; font-weight: 700;
+    cursor: pointer; font-family: 'Inter', sans-serif;
+    transition: all 0.3s;
+    box-shadow: 0 0 20px rgba(255,107,53,0.4);
+  }
+
+  .form-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 40px rgba(255,107,53,0.6);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #040E21;
+    padding: 40px 5% 24px;
+  }
+
+  .footer-top {
+    display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: wrap; gap: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 24px;
+  }
+
+  .footer-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.4rem; font-weight: 700; color: white;
+  }
+
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a {
+    color: rgba(255,255,255,0.5); text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--orange); }
+
+  .footer-bottom {
+    display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+
+  .footer-copy { color: rgba(255,255,255,0.3); font-size: 0.8rem; }
+  .footer-made { color: rgba(255,255,255,0.3); font-size: 0.8rem; }
+  .footer-made span { color: var(--orange); }
+
+  /* ─── DOTS PATTERN ─── */
+  .dot-divider {
+    display: flex; justify-content: center; gap: 6px;
+    padding: 8px 0;
+  }
+  .dot-divider span {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--orange); opacity: 0.4;
+  }
+  .dot-divider span:nth-child(3) { opacity: 1; background: var(--purple); }
+
+  /* ─── SCROLL ANIMATIONS ─── */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 768px) {
+    .hero-mockup { display: none; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero h1 { font-size: 2rem; }
+    section { padding: 60px 5%; }
+    .stats-bar { gap: 24px; }
+  }
+
+  /* ─── VIDEO PLACEHOLDER ─── */
+  .video-section {
+    background: var(--grey); padding: 80px 5%;
+    text-align: center;
+  }
+
+  .video-placeholder {
+    max-width: 800px; margin: 0 auto;
+    background: var(--navy);
+    border-radius: 20px; aspect-ratio: 16/9;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    border: 2px solid rgba(108,99,255,0.3);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    position: relative; overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+
+  .video-placeholder:hover { transform: scale(1.01); }
+
+  .play-btn {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: var(--orange);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem;
+    box-shadow: 0 0 40px rgba(255,107,53,0.6);
+    margin-bottom: 16px;
+    transition: transform 0.3s;
+  }
+
+  .video-placeholder:hover .play-btn { transform: scale(1.1); }
+  .video-text { color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+  .video-title { color: white; font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <span>100</span><span class="logo-dot">DOTS</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#ai">AI Features</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Request Demo →</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="dots"></canvas>
+  <div class="hero-content hero">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      TRUSTED SCHOOL MANAGEMENT PLATFORM
+    </div>
+    <h1>One Vision.<br><span>Hundred</span> Solutions.</h1>
+    <p class="hero-sub">Smart Software for the Digital Future</p>
+    <p>Empowering schools, businesses, and organizations with intelligent software built for India. From school ERP to AI-powered tools — 100 DOTS delivers it all.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">🚀 Request Demo</a>
+      <a href="#products" class="btn-secondary">▶ Explore Products</a>
+    </div>
+  </div>
+
+  <!-- Phone Mockup -->
+  <div class="hero-mockup">
+    <div class="phone-frame">
+      <div class="phone-screen">
+        <div class="phone-header">
+          <div class="phone-header-title">👋 Welcome back</div>
+          <div class="phone-header-name">Rose Martin — Teacher</div>
+        </div>
+        <div class="phone-stats">
+          <div class="phone-stat">
+            <div class="phone-stat-num">24</div>
+            <div class="phone-stat-label">STUDENTS</div>
+          </div>
+          <div class="phone-stat">
+            <div class="phone-stat-num">8</div>
+            <div class="phone-stat-label">ASSIGNMENTS</div>
+          </div>
+          <div class="phone-stat">
+            <div class="phone-stat-num">4</div>
+            <div class="phone-stat-label">PENDING</div>
+          </div>
+          <div class="phone-stat">
+            <div class="phone-stat-num">96%</div>
+            <div class="phone-stat-label">ATTENDANCE</div>
+          </div>
+        </div>
+        <div class="phone-menu">
+          <div class="phone-menu-item"><div class="phone-menu-icon">📋</div>Assignments</div>
+          <div class="phone-menu-item"><div class="phone-menu-icon">✅</div>Attendance</div>
+          <div class="phone-menu-item"><div class="phone-menu-icon">📢</div>Circulars</div>
+          <div class="phone-menu-item"><div class="phone-menu-icon">💰</div>Fees</div>
+          <div class="phone-menu-item"><div class="phone-menu-icon">📊</div>Reports</div>
+          <div class="phone-menu-item"><div class="phone-menu-icon">💬</div>Messages</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num" data-count="20">0+</div>
+    <div class="stat-label">Modules</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num" data-count="3">0</div>
+    <div class="stat-label">Platforms (Web + Mobile + Admin)</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num" data-count="100">0%</div>
+    <div class="stat-label">Made in India</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">24×7</div>
+    <div class="stat-label">Support</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-visual">
+      <div class="dots-grid" id="dotsGrid"></div>
+      <div class="about-tagline">
+        Connecting <span>technology</span><br>with education.
+      </div>
+      <div class="about-desc">
+        100 DOTS is a technology company focused on building smart, affordable software for Indian schools and businesses.
+      </div>
+    </div>
+    <div>
+      <div class="section-badge">ABOUT 100 DOTS</div>
+      <h2 class="section-title">Built for India.<br>Built to <span>Scale.</span></h2>
+      <p class="section-sub">We believe technology should simplify education, not complicate it. Our products are designed for real schools with real challenges.</p>
+      <ul class="value-list">
+        <li>Founded by <strong>Preeti Grewal</strong> with a vision to digitize Indian education</li>
+        <li>Products built for schools, galleries, and businesses across India</li>
+        <li>White-label solutions available for schools across the country</li>
+        <li>Affordable pricing with annual maintenance and full support</li>
+        <li>AI-powered features built into every product</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div style="text-align:center; margin-bottom: 48px;">
+    <div class="section-badge">OUR PRODUCTS</div>
+    <h2 class="section-title">What We Build</h2>
+    <p class="section-sub" style="margin: 0 auto;">Powerful software products crafted for schools, businesses, and creative organizations across India.</p>
+  </div>
+  <div class="products-grid">
+
+    <!-- HelloSchool -->
+    <div class="product-card featured reveal">
+      <span class="product-badge badge-live">✅ LIVE</span>
+      <div class="product-icon">🏫</div>
+      <div class="product-name">HelloSchool</div>
+      <div class="product-tagline">Complete School ERP for modern schools</div>
+      <ul class="product-features">
+        <li>Student & Staff Management</li>
+        <li>Assignments & Submissions</li>
+        <li>Attendance Tracking</li>
+        <li>Fee Management & Receipts</li>
+        <li>Circulars & Announcements</li>
+        <li>Report Cards & Grades</li>
+        <li>Teacher-Student Communication</li>
+        <li>Web App + Mobile App (Android)</li>
+      </ul>
+      <a href="#features" class="product-cta">Explore Features →</a>
+    </div>
+
+    <!-- Art Gallery -->
+    <div class="product-card reveal">
+      <span class="product-badge badge-soon">🔜 COMING SOON</span>
+      <div class="product-icon">🎨</div>
+      <div class="product-name">ArtSpace</div>
+      <div class="product-tagline">Digital gallery management platform</div>
+      <ul class="product-features">
+        <li>Digital artwork cataloguing</li>
+        <li>Online exhibition management</li>
+        <li>Artist portfolio management</li>
+        <li>Sales & inventory tracking</li>
+        <li>Visitor management system</li>
+      </ul>
+      <a href="#contact" class="product-cta">Join Waitlist →</a>
+    </div>
+
+    <!-- Pipeline -->
+    <div class="product-card pipeline reveal">
+      <span class="product-badge badge-pipeline">🔮 PIPELINE</span>
+      <div class="product-icon">💼</div>
+      <div class="product-name">More Coming...</div>
+      <div class="product-tagline">More innovative products in development</div>
+      <ul class="product-features">
+        <li>Healthcare Management System</li>
+        <li>Restaurant & Hospitality ERP</li>
+        <li>NGO & Trust Management</li>
+        <li>Event Management Platform</li>
+        <li>And much more...</li>
+      </ul>
+      <a href="#contact" class="product-cta">Stay Updated →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- HELLOSCHOOL FEATURES -->
+<section id="features">
+  <div style="text-align:center; margin-bottom: 48px;">
+    <div class="section-badge">HELLOSCHOOL ERP</div>
+    <h2 class="section-title">Everything a School Needs</h2>
+    <p class="section-sub" style="margin: 0 auto;">20+ modules covering every aspect of school management. One system. Three platforms.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card reveal">
+      <div class="feature-icon" style="background:#EEF2FF;">👨‍🎓</div>
+      <div class="feature-name">Student Management</div>
+      <div class="feature-desc">Complete student profiles, enrollment, promotion, TC generation, and academic year tracking.</div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon" style="background:#FFF7ED;">📋</div>
+      <div class="feature-name">Assignments & Homework</div>
+      <div class="feature-desc">Create, assign, and grade assignments. Students submit online. File attachments supported.</div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon" style="background:#F0FDF4;">✅</div>
+      <div class="feature-name">Attendance Tracking</div>
+      <div class="feature-desc">Daily attendance with Present/Absent/Late. Weekly and monthly reports with percentage analytics.</div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon" style="background:#FEF2F2;">💰</div>
+      <div class="feature-name">Fee Management</div>
+      <div class="feature-desc">Fee structures, installment tracking, payment recording, and auto-generated PDF receipts.</div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon" style="background:#EEF2FF;">📢</div>
+      <div class="feature-name">Circulars & Announcements</div>
+      <div class="feature-desc">Send class-specific circulars with file attachments. Mark urgent notices. Track views.</div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon" style="background:#FFFBEB;">📊</div>
+      <div class="feature-name">Report Cards</div>
+      <div class="feature-desc">4-stage workflow: Draft → Submitted → Authorized → Published. PDF download for parents.</div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon" style="background:#F0FDF4;">👨‍👩‍👧</div>
+      <div class="feature-name">Staff Management</div>
+      <div class="feature-desc">Staff profiles, attendance, leave tracking, and role-based access control.</div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon" style="background:#EEF2FF;">💬</div>
+      <div class="feature-name">Communication</div>
+      <div class="feature-desc">Bidirectional teacher-student messaging with inbox, sent, unread badges, and reply threading.</div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon" style="background:#FFF7ED;">⏰</div>
+      <div class="feature-name">Timetables</div>
+      <div class="feature-desc">Upload and manage class timetables. Latest badge highlights newest timetable. Download support.</div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon" style="background:#F0FDF4;">🖼️</div>
+      <div class="feature-name">School Gallery</div>
+      <div class="feature-desc">Upload and organize school event photos. Visible to all users on web and mobile.</div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon" style="background:#FEF2F2;">📈</div>
+      <div class="feature-name">Analytics & Reports</div>
+      <div class="feature-desc">Attendance reports, fee summaries, submission tracking, and system health monitoring.</div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon" style="background:#EEF2FF;">📱</div>
+      <div class="feature-name">Mobile App (Android)</div>
+      <div class="feature-desc">Full-featured Flutter mobile app for teachers, students, and admins. Works on all Android phones.</div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO SECTION -->
+<div class="video-section">
+  <div class="section-badge" style="background:var(--lightblue); color:var(--purple);">WATCH DEMO</div>
+  <h2 class="section-title" style="margin-bottom:8px;">See HelloSchool in Action</h2>
+  <p style="color:var(--muted); margin-bottom:32px;">A quick tour of the complete system</p>
+  <div style="max-width:800px; margin: 0 auto; border-radius:20px; overflow:hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.2);">
+  <video controls width="100%" style="display:block; border-radius:20px;">
+    <source src="SchoolDemoAppFinal.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+</div>
+
+<!-- AI FEATURES -->
+<section id="ai">
+  <div style="text-align:center; margin-bottom: 48px;">
+    <div class="section-badge">POWERED BY AI</div>
+    <h2 class="section-title">Intelligence Built In</h2>
+    <p class="section-sub" style="margin: 0 auto; color:rgba(255,255,255,0.6);">HelloSchool comes with AI-powered features that save teachers hours every week.</p>
+  </div>
+  <div class="ai-grid">
+    <div class="ai-card reveal">
+      <div class="ai-icon">✍️</div>
+      <div class="ai-name">AI Circular Writer</div>
+      <div class="ai-desc">Type a few keywords and AI writes a professional circular letter instantly.</div>
+      <span class="ai-badge">Coming Soon</span>
+    </div>
+    <div class="ai-card reveal">
+      <div class="ai-icon">📝</div>
+      <div class="ai-name">AI Assignment Generator</div>
+      <div class="ai-desc">Enter subject and topic — AI creates assignment questions, instructions, and marking scheme.</div>
+      <span class="ai-badge">Coming Soon</span>
+    </div>
+    <div class="ai-card reveal">
+      <div class="ai-icon">💬</div>
+      <div class="ai-name">AI Doubt Solver</div>
+      <div class="ai-desc">Students ask questions and AI explains concepts in simple, clear language.</div>
+      <span class="ai-badge">Coming Soon</span>
+    </div>
+    <div class="ai-card reveal">
+      <div class="ai-icon">📊</div>
+      <div class="ai-name">AI Attendance Insights</div>
+      <div class="ai-desc">AI analyzes attendance patterns and flags students at risk of falling below minimum.</div>
+      <span class="ai-badge">Coming Soon</span>
+    </div>
+    <div class="ai-card reveal">
+      <div class="ai-icon">🏆</div>
+      <div class="ai-name">AI Report Card Comments</div>
+      <div class="ai-desc">Select student performance data and AI generates professional, personalized report comments.</div>
+      <span class="ai-badge">Coming Soon</span>
+    </div>
+    <div class="ai-card reveal">
+      <div class="ai-icon">📅</div>
+      <div class="ai-name">AI Study Planner</div>
+      <div class="ai-desc">Based on upcoming deadlines, AI creates a personalized weekly study schedule for students.</div>
+      <span class="ai-badge">Coming Soon</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div style="text-align:center; margin-bottom: 48px;">
+    <div class="section-badge">WHY 100 DOTS</div>
+    <h2 class="section-title">Why Schools Choose Us</h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-num">20+</div>
+      <div class="why-label">Modules Included</div>
+      <div class="why-desc">Everything from admissions to alumni — covered in one system.</div>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-num">3</div>
+      <div class="why-label">Platforms</div>
+      <div class="why-desc">Web app, Android mobile app, and admin portal — all included.</div>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-num">₹</div>
+      <div class="why-label">Affordable Pricing</div>
+      <div class="why-desc">Transparent pricing with no hidden costs. AMC keeps you updated forever.</div>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-num">24×7</div>
+      <div class="why-label">Support</div>
+      <div class="why-desc">WhatsApp & email support. Remote assistance via TeamViewer.</div>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-num">🇮🇳</div>
+      <div class="why-label">Made in India</div>
+      <div class="why-desc">Built by an Indian developer who understands Indian school systems.</div>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-num">🔒</div>
+      <div class="why-label">Secure & Private</div>
+      <div class="why-desc">JWT authentication, role-based access, encrypted data. Your data stays safe.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div>
+      <div class="section-badge">GET IN TOUCH</div>
+      <h2 class="section-title">Let's Build Together</h2>
+      <p class="section-sub">Ready to digitize your school? Contact us for a free demo and custom quote.</p>
+
+      <div class="contact-item">
+        <div class="contact-icon">👩‍💻</div>
+        <div>
+          <div class="contact-label">FOUNDER</div>
+          <div class="contact-value">Preeti Grewal</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📱</div>
+        <div>
+          <div class="contact-label">PHONE / WHATSAPP</div>
+          <div class="contact-value">+91 84528 81977</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📧</div>
+        <div>
+          <div class="contact-label">EMAIL</div>
+          <div class="contact-value">team100dots@gmail.com</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🌐</div>
+        <div>
+          <div class="contact-label">WEBSITE</div>
+          <div class="contact-value">www.100dots.app</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h3 style="color:white; font-size:1.3rem; margin-bottom:24px; font-family:'Space Grotesk',sans-serif;">Request a Free Demo</h3>
+      <div class="form-group">
+        <label>Your Name *</label>
+        <input type="text" placeholder="Principal / Manager name">
+      </div>
+      <div class="form-group">
+        <label>School / Organization Name *</label>
+        <input type="text" placeholder="e.g. St. Mary's School">
+      </div>
+      <div class="form-group">
+        <label>Phone Number *</label>
+        <input type="tel" placeholder="+91 XXXXX XXXXX">
+      </div>
+      <div class="form-group">
+        <label>Product Interested In</label>
+        <select>
+          <option>HelloSchool ERP</option>
+          <option>ArtSpace Gallery</option>
+          <option>Custom Software</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell us about your school and requirements..."></textarea>
+      </div>
+      <button class="form-submit" onclick="alert('Thank you! We will contact you within 24 hours. 🎉')">
+        Send Request →
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-logo">100<span style="margin-left:6px; color:var(--orange)">DOTS</span></div>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#products">Products</a>
+      <a href="#features">Features</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 100 DOTS. All rights reserved.</div>
+    <div class="footer-made">Made with <span>♥</span> in India by Preeti Grewal</div>
+  </div>
+</footer>
+
+<script>
+// ─── ANIMATED DOTS CANVAS ───
+const canvas = document.getElementById('dots');
+const ctx = canvas.getContext('2d');
+let dots = [];
+let W, H;
+
+function resize() {
+  W = canvas.width = canvas.offsetWidth;
+  H = canvas.height = canvas.offsetHeight;
+}
+
+function initDots() {
+  dots = [];
+  const count = Math.floor((W * H) / 8000);
+  for (let i = 0; i < count; i++) {
+    dots.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      r: Math.random() * 2 + 1,
+      color: Math.random() > 0.7 ? '#FF6B35' : '#6C63FF'
+    });
+  }
+}
+
+function drawDots() {
+  ctx.clearRect(0, 0, W, H);
+
+  for (let i = 0; i < dots.length; i++) {
+    const d = dots[i];
+    d.x += d.vx; d.y += d.vy;
+    if (d.x < 0 || d.x > W) d.vx *= -1;
+    if (d.y < 0 || d.y > H) d.vy *= -1;
+
+    ctx.beginPath();
+    ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+    ctx.fillStyle = d.color;
+    ctx.fill();
+
+    for (let j = i + 1; j < dots.length; j++) {
+      const d2 = dots[j];
+      const dist = Math.hypot(d.x - d2.x, d.y - d2.y);
+      if (dist < 120) {
+        ctx.beginPath();
+        ctx.moveTo(d.x, d.y);
+        ctx.lineTo(d2.x, d2.y);
+        ctx.strokeStyle = `rgba(108,99,255,${(1 - dist/120) * 0.3})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(drawDots);
+}
+
+window.addEventListener('resize', () => { resize(); initDots(); });
+resize(); initDots(); drawDots();
+
+// ─── DOTS GRID (ABOUT) ───
+const grid = document.getElementById('dotsGrid');
+if (grid) {
+  for (let i = 0; i < 100; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot-cell' +
+      (Math.random() > 0.7 ? ' lit' : '') +
+      (Math.random() > 0.85 ? ' lit2' : '');
+    grid.appendChild(d);
+  }
+}
+
+// ─── SCROLL REVEAL ───
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 100);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(r => observer.observe(r));
+
+// ─── COUNT UP ANIMATION ───
+const statNums = document.querySelectorAll('[data-count]');
+const countObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const target = parseInt(e.target.dataset.count);
+      const suffix = e.target.textContent.replace(/\d+/, '');
+      let count = 0;
+      const step = target / 40;
+      const interval = setInterval(() => {
+        count = Math.min(count + step, target);
+        e.target.textContent = Math.round(count) + suffix;
+        if (count >= target) clearInterval(interval);
+      }, 40);
+      countObs.unobserve(e.target);
+    }
+  });
+});
+statNums.forEach(n => countObs.observe(n));
+
+// ─── SMOOTH NAV ───
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>
