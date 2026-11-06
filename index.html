@@ -437,7 +437,7 @@
 
     <form class="contact-form" id="demoForm" novalidate>
       <h3>Request a free demo</h3>
-      <p class="form-hint">Fill this in and send it to us on WhatsApp or by email. Nothing is sent until you press a button. If the email button does nothing on your device, write to <a href="mailto:contact@100dots.app" style="color:#FFA27F">contact@100dots.app</a>.</p>
+      <p class="form-hint">Fill this in and send it to us on WhatsApp or by email. You may also send directly to <a href="mailto:contact@100dots.app" style="color:#FFA27F">contact@100dots.app</a>.</p>
       <div class="form-group"><label for="fName">Your name *</label><input id="fName" type="text" autocomplete="name" placeholder="Principal / manager name" required></div>
       <div class="form-group"><label for="fSchool">School or organisation *</label><input id="fSchool" type="text" autocomplete="organization" required></div>
       <div class="form-group"><label for="fPhone">Phone number *</label><input id="fPhone" type="tel" autocomplete="tel" placeholder="+91 XXXXX XXXXX" required></div>
@@ -446,7 +446,6 @@
       <div class="form-group"><label for="fMsg">Message</label><textarea id="fMsg" placeholder="Number of students, current system, anything else..."></textarea></div>
       <div class="form-actions">
         <button type="button" class="btn-primary" id="sendWa">Send on WhatsApp</button>
-        <button type="button" class="btn-outline" id="sendMail">Send by email</button>
       </div>
       <div class="form-msg" id="formMsg" role="status" aria-live="polite"></div>
     </form>
@@ -533,11 +532,6 @@ document.getElementById('sendWa').addEventListener('click', function(){
   var t = collect(); if (!t) return;
   window.open('https://wa.me/918452881977?text='+encodeURIComponent(t), '_blank', 'noopener');
   finish('WhatsApp has opened with your details. Press Send there to finish. Thank you!');
-});
-document.getElementById('sendMail').addEventListener('click', function(){
-  var t = collect(); if (!t) return;
-  window.location.href = 'mailto:contact@100dots.app?subject='+encodeURIComponent('Demo request')+'&body='+encodeURIComponent(t);
-  finish('Your email app has opened with your details. Press Send there to finish. Thank you!');
 });
 </script>
 </body>
