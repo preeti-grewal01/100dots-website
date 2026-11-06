@@ -60,7 +60,8 @@
     text-decoration:none;display:inline-block;transition:background .2s}
   .btn-secondary:hover{background:rgba(255,255,255,.2)}
 
-  .hero-mockup{position:absolute;right:6%;bottom:40px;width:min(330px,28vw);z-index:2}
+  .hero-mockup{position:absolute;right:6%;bottom:40px;width:min(330px,28vw);z-index:2;animation:float 4s ease-in-out infinite}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
   .phone-frame{background:#12122B;border-radius:38px;padding:11px;border:2px solid rgba(108,99,255,.35);box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 60px rgba(108,99,255,.2)}
   .phone-screen{background:linear-gradient(135deg,#071A3D,#0D2251);border-radius:28px;overflow:hidden;aspect-ratio:9/18.5}
   .phone-header{background:linear-gradient(90deg,#6C63FF,#009688);padding:20px 16px 16px;color:#fff}
@@ -248,7 +249,7 @@
 
   <div class="hero-mockup" aria-hidden="true">
     <div class="phone-frame"><div class="phone-screen">
-      <div class="phone-header"><small>Welcome back</small><strong>Sample Teacher</strong></div>
+      <div class="phone-header"><small>Welcome back</small><strong>Teacher Dashboard</strong></div>
       <div class="phone-stats">
         <div class="phone-stat"><b>24</b><span>STUDENTS</span></div>
         <div class="phone-stat"><b>8</b><span>ASSIGNMENTS</span></div>
@@ -257,7 +258,7 @@
       </div>
       <div class="phone-menu">
         <div><i>📋</i>Assignments</div><div><i>✅</i>Attendance</div><div><i>📢</i>Circulars</div>
-        <div><i>💰</i>Fees</div><div><i>📊</i>Reports</div><div><i>💬</i>Messages</div>
+        <div><i>⏰</i>Timetable</div><div><i>📊</i>Reports</div><div><i>💬</i>Messages</div>
       </div>
     </div></div>
     <div class="mock-note">Sample data for illustration</div>
